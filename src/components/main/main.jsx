@@ -1,5 +1,6 @@
 import './main.css';
 import Navbar from '../common/navbar/navbar';
+import { Link } from 'react-router-dom';
 
 const Main = () => {
   return (
@@ -13,7 +14,7 @@ const Main = () => {
       <div className='diary_btn'>
         <ul>
           <li>
-            <a href='today.html'>일기 쓰러 가기</a>
+            <Link to='/today'>일기 쓰러 가기</Link>
           </li>
         </ul>
       </div>
