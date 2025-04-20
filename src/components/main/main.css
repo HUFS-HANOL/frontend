@@ -1,0 +1,93 @@
+/* 배경 및 전체 설정 */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: '조선일보명조', sans-serif;
+  background: linear-gradient(to right, #e6e6fa, #fdebef);
+}
+
+/* 중앙 정렬 컨테이너 */
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/* 타이핑 텍스트 */
+.typing {
+  font-size: 50px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid rgba(74, 74, 74, 0.8);
+  width: 0;
+  animation:
+    typing 3s steps(30, end) forwards,
+    blink 0.8s step-end infinite;
+  border-right: none; /* 커서 제거 */
+  background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.diary_btn {
+  position: absolute;
+  bottom: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+}
+
+.diary_btn ul {
+  list-style: none; /* ● 점 없애기 */
+  padding: 0;
+  margin: 0;
+}
+
+.diary_btn a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: #4a4a4a; /* 링크 색도 원하면 지정 */
+  font-weight: 300;
+}
+
+.diary_btn a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.diary_message {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  background-color: rgba(255, 255, 255, 0.7); /* 투명한 흰색 */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  font-family: '조선일보명조', sans-serif;
+  font-size: 20px;
+  color: rgba(74, 74, 74, 0.8);
+}

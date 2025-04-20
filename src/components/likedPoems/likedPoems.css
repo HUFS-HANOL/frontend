@@ -1,0 +1,67 @@
+/* 공통 스타일 */
+body {
+  font-family: '조선일보명조', sans-serif;
+  background: linear-gradient(to right, #e6e6fa, #fdebef);
+  color: #4a4a4a;
+  margin: 0;
+  padding: 70px 20px 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 20px;
+  justify-content: center;
+}
+.poem-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 400px;
+  position: relative;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+.poem-content {
+  flex: 1;
+  overflow: auto;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 감정 아이콘 영역 */
+.emotion-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.emotion {
+  width: 32px; /* 이모티콘 크기 */
+  height: 32px; /* 크기 조절 */
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.emotion:hover {
+  transform: scale(1.2); /* 마우스를 올리면 확대 효과 */
+}
+.heart {
+  width: 28px; /* 이모티콘 크기 */
+  height: 28px; /* 크기 조절 */
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.heart:hover {
+  transform: scale(1.2); /* 마우스를 올리면 확대 효과 */
+}
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
