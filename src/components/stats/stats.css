@@ -6,16 +6,22 @@ body {
   padding: 70px 20px 20px;
 }
 
+/* 디버깅용 스타일 */
+.debug {
+  border: 1px solid red;
+}
+
 .stats-container {
-  max-width: 800px;
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .stats-section {
   background: white;
-  padding: 25px 20px;
-  margin-top: 20px;
   border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -51,7 +57,7 @@ body {
   color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center; /* 세로 중앙 정렬 */
+  align-items: center; 
   padding-bottom: 5px;
 }
 
@@ -75,18 +81,19 @@ body {
 .bar-description {
   max-width: 300px;
   position: relative;
-  padding-top: 0px; /* 기존보다 더 위로 밀고 싶으면 숫자 줄이기 */
-  top: -40px; /* 더 위로 올리기 */
+  padding-top: 0px; 
+  top: -40px; 
   font-size: 16px;
   line-height: 1.6;
   font-family: 'KoPubWorld Dotum Light', sans-serif;
+  display: none; 
 }
 
 .pie-text-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* 기존 center → flex-start로 바꿔서 왼쪽 정렬 */
-  gap: 60px; /* 기존 gap 30px → 60px으로 더 띄움 */
+  justify-content: flex-start; 
+  gap: 60px; 
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
@@ -105,7 +112,7 @@ body {
   );
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
-  margin-left: 150px; /* 추가: 파이 차트를 오른쪽으로 밀기 */
+  margin-left: 150px; 
 }
 
 .label {
@@ -150,47 +157,22 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.placeholder-graph {
-  height: 150px;
-  background-color: #f9f9f9;
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  color: #888;
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #666;
 }
-.bar.month1 {
-  background: #ffe4e1;
-}
-.bar.month2 {
-  background: #ffddf3;
-}
-.bar.month3 {
-  background: #ffc9d6;
-}
-.bar.month4 {
-  background: #fef2f2;
-}
-.bar.month5 {
-  background: #f8edeb;
-}
-.bar.month7 {
-  background: #cdb4db;
-}
-.bar.month8 {
-  background: #b5ead7;
-}
-.bar.month9 {
-  background: #caffbf;
-}
-.bar.month10 {
-  background: #fdffb6;
-}
-.bar.month11 {
-  background: #ffd6a5;
-}
-.bar.month12 {
-  background: #ffadad;
-}
+
+.bar.month1 { background: #FFE5E5; }  
+.bar.month2 { background: #FFE5F1; }  
+.bar.month3 { background: #FFE5E8; }  
+.bar.month4 { background: #F5E6FF; }  
+.bar.month5 { background: #E6F5FF; } 
+.bar.month6 { background: #E6FFE6; }  
+.bar.month7 { background: #FFF5E6; } 
+.bar.month8 { background: #FFE6E6; }  
+.bar.month9 { background: #E6FFE6; }  
+.bar.month10 { background: #FFE6F5; } 
+.bar.month11 { background: #F5FFE6; } 
+.bar.month12 { background: #E6E6FF; } 

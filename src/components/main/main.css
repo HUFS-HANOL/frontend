@@ -15,6 +15,8 @@ body {
   justify-content: center;
   height: 100vh;
   text-align: center;
+  position: relative;
+  margin-top: -100px;
 }
 
 /* 타이핑 텍스트 */
@@ -23,15 +25,17 @@ body {
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 2px solid rgba(74, 74, 74, 0.8);
+  border-right: 1px solid #a18cd1;
   width: 0;
-  animation:
-    typing 3s steps(30, end) forwards,
-    blink 0.8s step-end infinite;
-  border-right: none; /* 커서 제거 */
+  animation: 
+    typing 1.5s steps(30, end) forwards,
+    blink 1s step-end infinite;
   background: linear-gradient(90deg, #a18cd1, #fbc2eb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  height: 60px;
+  letter-spacing: 2px;
 }
 
 @keyframes typing {
@@ -57,18 +61,18 @@ body {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
+  padding: 2px 8px; 
 }
 
 .diary_btn ul {
-  list-style: none; /* ● 점 없애기 */
+  list-style: none; 
   padding: 0;
   margin: 0;
 }
 
 .diary_btn a {
-  text-decoration: none; /* 밑줄 제거 */
-  color: #4a4a4a; /* 링크 색도 원하면 지정 */
+  text-decoration: none; 
+  color: #4a4a4a;
   font-weight: 300;
 }
 
@@ -83,7 +87,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 800px;
-  background-color: rgba(255, 255, 255, 0.7); /* 투명한 흰색 */
+  background-color: rgba(255, 255, 255, 0.7); 
   border-radius: 10px;
   padding: 20px;
   text-align: center;

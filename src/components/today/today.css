@@ -11,48 +11,49 @@ body {
   min-height: 100vh;
 }
 
-/* 메인 컨테이너 */
 .container {
   align-items: flex-start;
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   margin-top: 50px;
-  gap: 20px;
+  gap: 100px; 
   text-align: center;
+  position: relative;
 }
 
-/* 전체 시/문구 묶는 컨테이너 */
 .poem-container {
-  width: 40%;
+  width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* 시와 문구 사이 간격 */
+  gap: 20px;
+  min-height: 400px;
+  margin-left: 60px; 
 }
 
-/* 좌측 및 우측 섹션 */
+
 .poem-section {
   width: 100%;
   padding: 20px;
   background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  min-height: 300px;
-  position: relative; /* 감정 아이콘 위치 조절을 위해 */
+  min-height: 280px; 
+  position: relative;
 }
 
 .phrase-section {
   width: 100%;
   padding: 20px;
   background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  min-height: 100px;
+  min-height: 120px; 
 }
 
-#phrase-output {
+.phrase-output {
   width: 100%;
-  height: 100px;
+  height: 80px;
   border: none;
   resize: none;
   padding: 10px;
@@ -60,37 +61,109 @@ body {
   font-family: 'KoPubWorld Dotum Light', cursive;
   background: transparent;
   outline: none;
+  color: #333333;
 }
 
-.diary-section {
-  width: 40%;
+.diary-container {
+  background-color: #ffffff;
   padding: 20px;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  min-height: 300px;
-  position: relative; /* 감정 아이콘 위치 조절을 위해 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  min-height: 400px;
+  margin-right: 10px; 
 }
 
-/* 일기 입력창 */
-#diary-input {
+.diary-input {
   width: 100%;
-  height: 300px;
+  height: 340px; 
   border: none;
   padding: 10px;
   font-family: 'KoPubWorld Dotum Light', cursive;
   font-size: 18px;
-  background: url('https://www.transparenttextures.com/patterns/white-paper.png');
   outline: none;
   resize: none;
+  color: #333333;
+  background-color: #ffffff;
 }
 
-/* 감정 아이콘 영역 (일기 창 좌측 하단) */
+.poem-output {
+  width: 100%;
+  height: 240px; 
+  border: none;
+  padding: 10px;
+  font-family: 'KoPubWorld Dotum Light', cursive;
+  font-size: 18px;
+  background: white;
+  outline: none;
+  resize: none;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.convert-section {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background: linear-gradient(to right, #e6e6fa, #fdebef); 
+  border-radius: 50%;
+  padding: 5px; 
+}
+
+.convert-btn {
+  width: 110px;
+  height: 110px;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  background-color: #ffffff;
+  color: #333333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.convert-btn::before {
+  content: "시로 바꾸기";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: transparent;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.convert-btn:hover {
+  transform: rotate(360deg);
+  background-color: #f7f7f7;
+}
+
+.convert-btn:hover::before {
+  transform: rotate(-360deg);
+}
+
 .emotion-icons {
   display: flex;
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  left: 10px;
   gap: 10px;
   margin-top: 10px;
 }
@@ -104,38 +177,15 @@ body {
   transform: scale(1.2);
 }
 
-/* 시 생성 공간 */
-#poem-output {
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 200px;
-  border: none;
-  padding: 10px;
-  font-family: 'KoPubWorld Dotum Light', cursive;
-  font-size: 18px;
-  background: white;
-  outline: none;
-  resize: none;
-}
-
-/* 중앙 변환 버튼 */
-.convert-section {
-  width: 20%;
-  text-align: center;
-}
-#convert-btn {
-  margin-top: 150px;
-  width: 120px;
-  height: 120px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-  transition:
-    transform 0.3s,
-    background-color 0.3s;
-}
-#convert-btn:hover {
-  transform: rotate(10deg);
-  background-color: #f7f7f7;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
