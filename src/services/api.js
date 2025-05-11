@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api/today'; // 서버 주소에 맞게 수정하기
+const BASE_URL = 'http://localhost:3000/api/today'; 
 
 /**
  * 일기 데이터를 서버로 전송하고 AI가 생성한 시를 받아오는 함수
