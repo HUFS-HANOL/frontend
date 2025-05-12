@@ -8,6 +8,12 @@ body {
   background: linear-gradient(to right, #e6e6fa, #fdebef);
 }
 
+.login-btn {
+  position: fixed;
+  top: 20px;
+  right: 45px;
+}
+
 /* 중앙 정렬 컨테이너 */
 .center-container {
   display: flex;

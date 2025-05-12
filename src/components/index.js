@@ -5,3 +5,5 @@ export { default as Today } from './today/today';
 export { default as LikedPoems } from './likedPoems/likedPoems';
 export { default as LikedDiaries } from './likedDiaries/likedDiaries';
 export { default as UserPage } from './userPage/userPage';
+export { default as LoginPage } from './login/login';
+export { default as SignupPage } from './signup/signup';

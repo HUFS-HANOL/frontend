@@ -4,14 +4,30 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000/api/today'; 
 
-/**
- * 일기 데이터를 서버로 전송하고 AI가 생성한 시를 받아오는 함수
- * @param {string} diary - 사용자가 작성한 일기 내용
- * @returns {Promise<Object>} - 서버로부터 받은 응답 데이터
- */
+export const saveDiaryDB = async (diary) => {
+      console.log('saveDiaryDB 호출');
+  try {
+    const response = await axios.post(`${BASE_URL}/diaries`, {
+      user_id: 1,
+      content: diary }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log('일기 DB 연결 성공:', response.status); 
+    console.log('응답 데이터:', response.data); 
+    return response.data; 
+
+  } catch (error) {
+    console.error('일기 저장 중 오류 발생:', error);
+    throw error;
+  }
+};
+
 export const generatePoem = async (diary) => {
   try {
-    const response = await axios.post(`${BASE_URL}/poemphasre`, { diary }, {
+    console.log('generatePoem 호출');
+    const response = await axios.post(`${BASE_URL}/poemphrase`, { diary }, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -23,3 +39,4 @@ export const generatePoem = async (diary) => {
     throw error;
   }
 };
+

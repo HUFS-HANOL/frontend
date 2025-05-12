@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Main, Calendar, Today, Stats, UserPage, LikedDiaries, LikedPoems } from './components';
+import { Main, Calendar, Today, Stats, UserPage, LikedDiaries, LikedPoems, LoginPage, SignupPage } from './components';
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
             <Route path='/userpage' element={<UserPage />} />
             <Route path='/userpage/likedDiaries' element={<LikedDiaries />} />
             <Route path='/userpage/likedPoems' element={<LikedPoems />} />
-            {/* <Route path='/loading' element={<Loading />} /> */}
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
           </Routes>
         </header>
       </div>

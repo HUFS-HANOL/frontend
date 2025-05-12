@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './today.css';
-import { generatePoem } from '../../services/api';
+import { saveDiaryDB, generatePoem } from '../../services/api';
 import blushImg from '../../assets/images/blush.png';
 import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
@@ -12,12 +12,11 @@ function Today() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // 디버깅용
   console.log('Today 컴포넌트 렌더링됨');
   console.log('현재 상태:', { diaryText, poemText, phraseText, isLoading, error });
-
+  
   async function convertToPoem() {
-    console.log('시 변환 시작:', diaryText);  // 디버깅용
+    console.log('시 변환 시작:', diaryText);  
 
     if (!diaryText) {
       setError('일기 내용을 입력해주세요');
@@ -28,8 +27,9 @@ function Today() {
     setError('');
 
     try {
+      await saveDiaryDB(diaryText);
       const result = await generatePoem(diaryText);
-      console.log('API 응답:', result);  // 디버깅용
+      console.log('API 응답:', result);  
 
       if (!result || !result.poem) {
         setError('시 생성 실패');
@@ -38,7 +38,7 @@ function Today() {
       setPoemText(result.poem);
       setPhraseText(result.phrase || '');
     } catch (err) {
-      console.log('에러 발생:', err);  // 디버깅용
+      console.log('에러 발생:', err);  
       setError('오류가 발생했습니다');
       setPoemText('');
       setPhraseText('');
@@ -62,7 +62,7 @@ function Today() {
               placeholder='일기 내용을 입력하세요'
               value={diaryText}
               onChange={(e) => {
-                console.log('일기 입력:', e.target.value);  // 디버깅용
+                console.log('일기 입력:', e.target.value);  
                 setDiaryText(e.target.value);
               }}
             />
