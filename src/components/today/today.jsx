@@ -27,17 +27,24 @@ function Today() {
     setError('');
 
     try {
-      await saveDiaryDB(diaryText);
-      const result = await generatePoem(diaryText);
-      console.log('API 응답:', result);  
+      const diaryResponse = await saveDiaryDB(diaryText);
+      console.log('일기 저장 응답:', diaryResponse);
+      const diaryId = diaryResponse.diaryId;
 
-      if (!result || !result.poem) {
-        setError('시 생성 실패');
-        return;
-      }
+      if (diaryResponse.diaryMessage === "일기 저장 완료") {
+        const result = await generatePoem(diaryText);
+        console.log('API 응답:', result);  
+        if (!result || !result.poem) {
+          setError('시 생성 실패');
+          return;
+        }
+
       setPoemText(result.poem);
       setPhraseText(result.phrase || '');
-    } catch (err) {
+    } else {
+      setError('일기 저장 실패');
+    } 
+  } catch (err) {
       console.log('에러 발생:', err);  
       setError('오류가 발생했습니다');
       setPoemText('');
