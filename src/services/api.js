@@ -24,10 +24,10 @@ export const saveDiaryDB = async (diary) => {
   }
 };
 
-export const generatePoem = async (diary) => {
+export const generatePoem = async (content, diary_id) => {
   try {
     console.log('generatePoem 호출');
-    const response = await axios.post(`${BASE_URL}/poemphrase`, { diary }, {
+    const response = await axios.post(`${BASE_URL}/poemphrase`, { content, diary_id }, {
       headers: {
         'Content-Type': 'application/json',
       },
