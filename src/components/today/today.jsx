@@ -32,7 +32,7 @@ function Today() {
       const diaryId = diaryResponse.diaryId;
 
       if (diaryResponse.diaryMessage === "일기 저장 완료") {
-        const result = await generatePoem(diaryText);
+        const result = await generatePoem(diaryText, diaryId);
         console.log('API 응답:', result);  
         if (!result || !result.poem) {
           setError('시 생성 실패');
