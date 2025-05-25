@@ -27,7 +27,6 @@ function App() {
             <Route path='/userpage/likedPoems' element={<LikedPoems />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<SignupPage />} />
-            {/* <Route path='/loading' element={<Loading />} /> */}
           </Routes>
         </header>
       </div>
