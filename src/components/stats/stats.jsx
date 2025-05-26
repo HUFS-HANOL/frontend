@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './stats.css';
 import Navbar from '../common/navbar/navbar';
+import { stats } from '../../data/dashboardDummyData';
 
 function Stats() {
   const [yearlyStats, setYearlyStats] = useState(null);

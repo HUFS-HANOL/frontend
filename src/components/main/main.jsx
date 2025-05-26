@@ -28,6 +28,9 @@ function Main() {
           <li>
             <Link to='/today'>일기 쓰기</Link>
           </li>
+          <li>
+            <Link to='/favPoems'>좋아하는 시</Link>
+          </li>
         </ul>
       </div>
 

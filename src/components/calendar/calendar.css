@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: '조선일보명조';
   src: url('/src/assets/조선일보명조.ttf') format('truetype');
@@ -7,93 +8,172 @@
 
 body {
   font-family: '조선일보명조', sans-serif;
-  background: linear-gradient(to right, #e6e6fa, #fdebef);
+  background: linear-gradient(135deg, #e6e6fa 0%, #fdebef 100%);
   color: #4a4a4a;
   margin: 0;
-  padding: 70px 20px 20px;
+  padding: 70px 0 0 0;
+  min-height: 100vh;
 }
 
+/* 캘린더 전체 컨테이너 */
 .calendar-container {
-  max-width: 600px;
-  margin: 20px auto;
-  text-align: center;
+  max-width: 700px;
+  margin: 60px auto 0 auto;
+  padding: 2.5rem 2rem;
+  background: rgba(255,255,255,0.32);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1.2s cubic-bezier(.23,1.07,.32,1) both;
 }
 
+/* 캘린더 헤더 */
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 18px;
 }
 
 .calendar-header button {
-  padding: 5px 10px;
+  padding: 7px 16px;
   cursor: pointer;
-  background-color: transparent;
+  background: linear-gradient(90deg, #fdebef 0%, #e6e6fa 100%);
   border: none;
-  color: #434343;
-  font-size: 20px;
+  border-radius: 8px;
+  color: #6d5eac;
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(229, 115, 183, 0.08);
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+.calendar-header button:hover {
+  background: linear-gradient(90deg, #e6e6fa 0%, #fdebef 100%);
+  color: #e573b7;
+  transform: scale(1.07);
 }
 
+.calendar-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6d5eac;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px #fdebef60;
+}
+
+/* 캘린더 요일/날짜 그리드 */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+  gap: 0.7rem;
+  width: 100%;
+  margin-bottom: 1.2rem;
 }
 
 .day-header {
   font-weight: bold;
   text-align: center;
-  padding: 10px;
+  padding: 10px 0;
+  color: #b39ddb;
+  font-size: 1.05rem;
+  background: transparent;
+  border-radius: 8px;
 }
 
 .date-cell {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: rgba(255,255,255,0.55);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(229, 115, 183, 0.05);
   min-height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 14px;
   position: relative;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px 0 0 0;
+}
+
+.date-cell:hover {
+  background: linear-gradient(90deg, #fdebef 0%, #e6e6fa 100%);
+  color: #e573b7;
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px 0 rgba(229, 115, 183, 0.12);
+}
+
+.date-cell.today {
+  background: linear-gradient(90deg, #e6e6fa 0%, #fdebef 100%);
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #e573b7;
+  box-shadow: 0 4px 20px 0 rgba(229, 115, 183, 0.16);
+  animation: pulse 1.2s infinite alternate;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 4px 20px 0 rgba(229, 115, 183, 0.16);}
+  100% { box-shadow: 0 8px 32px 0 rgba(229, 115, 183, 0.28);}
 }
 
 .date-number {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 14px;
+  top: 8px;
+  left: 12px;
+  font-size: 15px;
   font-weight: bold;
+  color: #6d5eac;
 }
 
 .write-btn {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 8px;
+  right: 10px;
   margin-top: 5px;
   cursor: pointer;
+  background: linear-gradient(90deg, #fdebef 0%, #e6e6fa 100%);
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2px 8px rgba(229, 115, 183, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, transform 0.18s;
+}
+.write-btn:hover {
+  background: linear-gradient(90deg, #e6e6fa 0%, #fdebef 100%);
+  transform: scale(1.13);
 }
 
 .date-cell.inactive {
-  opacity: 0.4;
+  opacity: 0.35;
+  background: rgba(255,255,255,0.18);
+  color: #aaa;
+  cursor: default;
 }
 
 .stats {
-  max-width: 600px;
-  margin: 20px auto;
+  max-width: 700px;
+  margin: 30px auto 0 auto;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   text-align: left;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 10px;
-  min-height: 100px;
+  background: rgba(255,255,255,0.38);
+  box-shadow: 0 4px 10px rgba(229, 115, 183, 0.09);
+  border-radius: 18px;
+  padding: 18px;
+  min-height: 110px;
+  border: 1.5px solid rgba(255,255,255,0.18);
 }
 
 .pie-chart {
@@ -107,7 +187,7 @@ body {
     #fff7b8 77% 88%,
     #ffe082 88% 99%
   );
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(229, 115, 183, 0.13);
   flex-shrink: 0;
 }
 
@@ -116,6 +196,7 @@ body {
   font-family: '조선일보명조', sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  color: #6d5eac;
 }
 
 .modal {
@@ -124,8 +205,8 @@ body {
   z-index: 9999;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
@@ -146,32 +227,55 @@ body {
 
 .modal-content {
   background: white;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 34px 28px;
+  border-radius: 16px;
   text-align: center;
-  width: 280px;
+  width: 320px;
   font-family: '조선일보명조', cursive;
   font-size: 18px;
   animation: fadeIn 0.3s ease;
   position: relative;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
+  top: 12px;
+  right: 18px;
+  font-size: 22px;
   cursor: pointer;
   color: #888;
+  background: none;
+  border: none;
 }
 
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98);}
+  100% { opacity: 1; transform: translateY(0) scale(1);}
+}
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+  0% { opacity: 0; transform: translateY(-20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .calendar-container {
+    padding: 1.2rem 0.6rem;
+    border-radius: 18px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .calendar-title {
+    font-size: 1.3rem;
+  }
+  .stats {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .modal-content {
+    width: 90vw;
+    padding: 18px 8px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 }

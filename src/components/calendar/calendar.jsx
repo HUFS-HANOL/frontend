@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './calendar.css';
+import { calendar } from '../../data/dashboardDummyData';
 
 import penImg from '../../assets/images/pen.png';
 import Navbar from '../common/navbar/navbar';

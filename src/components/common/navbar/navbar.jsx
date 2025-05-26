@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './navbar.css';
 
 function Navbar() {
   const location = useLocation();
@@ -11,12 +10,12 @@ function Navbar() {
     { path: '/calendar', label: '달력' },
     { path: '/today', label: '오늘 일기' },
     { path: '/stats', label: '통계' },
-    { path: '/userpage', label: '내 정보' }
+    { path: '/favPoems', label: '좋아하는 시' }
   ];
 
   function isActive(path) {
-    if (path === '/userpage') {
-      return currentPath.includes('userpage');
+    if (path === '/favPoems') {
+      return currentPath.includes('favPoems');
     }
     return currentPath === path;
   }

@@ -41,6 +41,9 @@ function Today() {
 
       setPoemText(result.poem);
       setPhraseText(result.phrase || '');
+
+      const userId = localStorage.getItem("user_id"); 
+      await savePoem(userId, diaryId, result.poem); 
     } else {
       setError('일기 저장 실패');
     } 

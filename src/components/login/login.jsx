@@ -22,7 +22,9 @@ const LoginPage = () => {
 
     if (response.status === 200) {
       const accessToken = response.data.accessToken;
+      const userId = response.data.userId;
       localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('user_id', userId); 
 
       // 로그인 성공시 메인 화면으로 이동
       navigate('/');
