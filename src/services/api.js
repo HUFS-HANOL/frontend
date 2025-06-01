@@ -71,3 +71,21 @@ export const getLikedPoems = async (user_id) => {
     throw error;
   }
 };
+
+// 시 좋아요/취소 요청 2025.06.01
+export const likePoem = async (poemId, liked) => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/calendar/poem/like', {
+      poemId,
+      liked,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("좋아요 업데이트 실패:", error);
+    throw error;
+  }
+};
