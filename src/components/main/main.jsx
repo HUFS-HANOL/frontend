@@ -19,7 +19,7 @@ function Main() {
         <div className='login-btn'>
           {isLoggedIn ? (
             <Button onClick={logout}>로그아웃</Button>
-          ) : (
+           ) : (
             <Button onClick={() => navigate('/login')}>로그인</Button>
           )}
         </div>
@@ -33,6 +33,9 @@ function Main() {
         <ul>
           <li>
             <Link to='/today'>일기 쓰기</Link>
+          </li>
+          <li>
+            <Link to='/favPoems'>좋아하는 시</Link>
           </li>
         </ul>
       </div>
