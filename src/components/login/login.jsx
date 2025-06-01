@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import Navbar from '../common/navbar/navbar';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,22 +12,28 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
+  // 로그인 직후 redirect 경로 결정
+  // const from = location.state?.from || '/';
+
   const onSubmit = async (data) => {
-    console.log('로그인 시도', data);
-    const response = await axios.post('http://localhost:3000/api/auth/login', {
-      identifier: data.email,
-      password: data.password,
-    });
+    localStorage.setItem('accessToken', 'test1234');
 
-    if (response.status === 200) {
-      const accessToken = response.data.accessToken;
-      localStorage.setItem('accessToken', accessToken);
+    navigate('/', { replace: true });
+    // console.log('로그인 시도', data);
+    // const response = await axios.post('http://localhost:3000/api/auth/login', {
+    //   identifier: data.email,
+    //   password: data.password,
+    // });
 
-      // 로그인 성공시 메인 화면으로 이동
-      navigate('/');
-    } else {
-      alert('로그인 실패');
-    }
+    // if (response.status === 200) {
+    //   const accessToken = response.data.accessToken;
+    //   localStorage.setItem('accessToken', accessToken);
+
+    //   // 로그인 성공시 메인 화면으로 이동
+    //   navigate('/');
+    // } else {
+    //   alert(response.data.authMessage);
+    // }
   };
 
   return (

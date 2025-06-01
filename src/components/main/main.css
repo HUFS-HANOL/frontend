@@ -33,7 +33,7 @@ body {
   overflow: hidden;
   border-right: 1px solid #a18cd1;
   width: 0;
-  animation: 
+  animation:
     typing 1.5s steps(30, end) forwards,
     blink 1s step-end infinite;
   background: linear-gradient(90deg, #a18cd1, #fbc2eb);
@@ -67,17 +67,17 @@ body {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 2px 8px; 
+  padding: 2px 8px;
 }
 
 .diary_btn ul {
-  list-style: none; 
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .diary_btn a {
-  text-decoration: none; 
+  text-decoration: none;
   color: #4a4a4a;
   font-weight: 300;
 }
@@ -93,7 +93,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 800px;
-  background-color: rgba(255, 255, 255, 0.7); 
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   padding: 20px;
   text-align: center;

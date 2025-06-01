@@ -29,7 +29,7 @@ const SignupPage = () => {
     if (response.status === 200) {
       navigate('/login');
     } else {
-      alert('회원가입 실패');
+      alert(response.data.authMessage);
     }
 
     console.log(response);
