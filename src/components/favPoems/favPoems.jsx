@@ -10,8 +10,39 @@ function FavPoems() {
   const userId = 1; 
 
   useEffect(() => {
-    setWeather({ temp: 22, desc: '맑음' });
-  }, []);
+  const fetchWeather = async () => {
+    try {
+      const res = await axios.get('http://localhost:3000/api/weather');
+      const items = res.data;
+
+      const temperatureItem = items.find(item => item.category === 'TMP');
+      const skyItem = items.find(item => item.category === 'SKY');
+
+      const temp = temperatureItem ? temperatureItem.fcstValue : '??';
+      let desc = '';
+
+      if (skyItem) {
+        switch (skyItem.fcstValue) {
+          case '1':
+            desc = '맑음'; break;
+          case '3':
+            desc = '구름 많음'; break;
+          case '4':
+            desc = '흐림'; break;
+          default:
+            desc = '정보 없음';
+        }
+      }
+
+      setWeather({ temp, desc });
+    } catch (err) {
+      console.error('날씨 정보를 불러오는 데 실패:', err);
+    }
+  };
+
+  fetchWeather();
+}, []);
+
 
   useEffect(() => {
     const fetchLikedPoems = async () => {
