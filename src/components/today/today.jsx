@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './today.css';
-import { saveDiaryDB, generatePoem } from '../../services/api';
+import { saveDiaryDB, generatePoem, savePoem } from '../../services/api';
 import blushImg from '../../assets/images/blush.png';
 import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
@@ -29,7 +29,7 @@ function Today() {
     try {
       const diaryResponse = await saveDiaryDB(diaryText);
       console.log('일기 저장 응답:', diaryResponse);
-      const diaryId = diaryResponse.diaryId;
+      const diaryId = diaryResponse.diary_id;
 
       if (diaryResponse.diaryMessage === "일기 저장 완료") {
         const result = await generatePoem(diaryText, diaryId);
@@ -41,6 +41,9 @@ function Today() {
 
       setPoemText(result.poem);
       setPhraseText(result.phrase || '');
+
+      const userId = localStorage.getItem("user_id"); 
+      await savePoem(userId, diaryId, result.poem, result.emotion_id); 
     } else {
       setError('일기 저장 실패');
     } 
