@@ -5,9 +5,7 @@ import {
   Calendar,
   Today,
   Stats,
-  UserPage,
-  LikedDiaries,
-  LikedPoems,
+  FavPoems,
   LoginPage,
   SignupPage,
 } from './components';
@@ -47,26 +45,10 @@ function App() {
                 }
               />
               <Route
-                path='/userpage'
+                path='/favPoems'
                 element={
                   <PrivateRoute>
-                    <UserPage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path='/userpage/likedDiaries'
-                element={
-                  <PrivateRoute>
-                    <LikedDiaries />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path='/userpage/likedPoems'
-                element={
-                  <PrivateRoute>
-                    <LikedPoems />
+                    <FavPoems />
                   </PrivateRoute>
                 }
               />
