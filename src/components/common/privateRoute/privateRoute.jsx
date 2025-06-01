@@ -5,9 +5,12 @@ const PrivateRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
   const { pathname } = useLocation();
 
-  if (!isLoggedIn) {
-    return <Navigate to='/login' replace state={{ from: pathname }} />;
-  }
+  /**
+   * @TODO 임시 주석 처리
+   */
+  // if (!isLoggedIn) {
+  //   return <Navigate to='/login' replace state={{ from: pathname }} />;
+  // }
 
   return children;
 };

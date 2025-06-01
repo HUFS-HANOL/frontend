@@ -14,9 +14,10 @@ body {
 }
 
 .calendar-container {
-  max-width: 600px;
-  margin: 20px auto;
+  min-width: 600px;
+  margin: 20px auto 20px;
   text-align: center;
+  padding-top: 150px;
 }
 
 .calendar-header {
@@ -68,6 +69,12 @@ body {
   font-weight: bold;
 }
 
+.day-emotion {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
 .write-btn {
   width: 20px;
   height: 20px;
@@ -116,6 +123,7 @@ body {
   font-family: '조선일보명조', sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  padding: 30px;
 }
 
 .modal {

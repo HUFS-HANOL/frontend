@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './today.css';
 import { saveDiaryDB, generatePoem, savePoem } from '../../services/api';
-import blushImg from '../../assets/images/blush.png';
 import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
+import { getEmotionData, mappingEmotion } from '@/utils/hooks/getEmotionData';
 
 function Today() {
   const [diaryText, setDiaryText] = useState('');
@@ -11,12 +11,14 @@ function Today() {
   const [phraseText, setPhraseText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [openEmotionBox, setOpenEmotionBox] = useState(false);
+  const [todayEmotion, setTodayEmotion] = useState(undefined);
 
   console.log('Today 컴포넌트 렌더링됨');
   console.log('현재 상태:', { diaryText, poemText, phraseText, isLoading, error });
-  
+
   async function convertToPoem() {
-    console.log('시 변환 시작:', diaryText);  
+    console.log('시 변환 시작:', diaryText);
 
     if (!diaryText) {
       setError('일기 내용을 입력해주세요');
@@ -31,24 +33,24 @@ function Today() {
       console.log('일기 저장 응답:', diaryResponse);
       const diaryId = diaryResponse.diary_id;
 
-      if (diaryResponse.diaryMessage === "일기 저장 완료") {
+      if (diaryResponse.diaryMessage === '일기 저장 완료') {
         const result = await generatePoem(diaryText, diaryId);
-        console.log('API 응답:', result);  
+        console.log('API 응답:', result);
         if (!result || !result.poem) {
           setError('시 생성 실패');
           return;
         }
 
-      setPoemText(result.poem);
-      setPhraseText(result.phrase || '');
+        setPoemText(result.poem);
+        setPhraseText(result.phrase || '');
 
-      const userId = localStorage.getItem("user_id"); 
-      await savePoem(userId, diaryId, result.poem, result.emotion_id); 
-    } else {
-      setError('일기 저장 실패');
-    } 
-  } catch (err) {
-      console.log('에러 발생:', err);  
+        const userId = localStorage.getItem('user_id');
+        await savePoem(userId, diaryId, result.poem, result.emotion_id);
+      } else {
+        setError('일기 저장 실패');
+      }
+    } catch (err) {
+      console.log('에러 발생:', err);
       setError('오류가 발생했습니다');
       setPoemText('');
       setPhraseText('');
@@ -60,7 +62,7 @@ function Today() {
     <div>
       <Navbar />
       {isLoading ? (
-        <div className="loading-overlay">
+        <div className='loading-overlay'>
           <Loading />
         </div>
       ) : (
@@ -72,11 +74,24 @@ function Today() {
               placeholder='일기 내용을 입력하세요'
               value={diaryText}
               onChange={(e) => {
-                console.log('일기 입력:', e.target.value);  
+                console.log('일기 입력:', e.target.value);
                 setDiaryText(e.target.value);
               }}
             />
-            {error && <p className="error-message">{error}</p>}
+            {error && <p className='error-message'>{error}</p>}
+
+            <div className='emotion-select-box'>오늘의 감정을 선택해주세요!</div>
+
+            <div className='emotion-icons' onClick={() => setOpenEmotionBox((prev) => !prev)}>
+              <div className='emotion'>{getEmotionData(todayEmotion)}</div>
+              <div className={`emotion-box ${openEmotionBox ? 'slide-in' : 'slide-out'}`}>
+                {Object.keys(mappingEmotion).map((emotion) => (
+                  <div onClick={() => setTodayEmotion(emotion)} className='emotion-item'>
+                    {getEmotionData(emotion)}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className='poem-container'>
@@ -88,24 +103,17 @@ function Today() {
                 value={poemText}
                 readOnly
               />
-              <div className='emotion-icons'>
-                <img className='emotion' src={blushImg} alt='기쁨' />
-              </div>
             </div>
 
             <div className='phrase-section'>
               <h2>공감 문구</h2>
-              <textarea
-                className='phrase-output'
-                value={phraseText}
-                readOnly
-              />
+              <textarea className='phrase-output' value={phraseText} readOnly />
             </div>
           </div>
 
           <div className='convert-section'>
-            <button 
-              className='convert-btn' 
+            <button
+              className='convert-btn'
               onClick={convertToPoem}
               disabled={isLoading || !diaryText}
             />

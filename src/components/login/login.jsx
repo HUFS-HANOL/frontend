@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import Navbar from '../common/navbar/navbar';
 import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { API_SERVER_PATH } from '@/utils/config';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -20,7 +22,8 @@ const LoginPage = () => {
 
     navigate('/', { replace: true });
     // console.log('로그인 시도', data);
-    // const response = await axios.post('http://localhost:3000/api/auth/login', {
+
+    // const response = await axios.post(`${API_SERVER_PATH}/api/auth/login`, {
     //   identifier: data.email,
     //   password: data.password,
     // });
