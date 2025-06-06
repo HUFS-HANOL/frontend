@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './today.css';
 import { saveDiaryDB, generatePoem, savePoem } from '../../services/api';
-import blushImg from '../../assets/images/blush.png';
 import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
+import { getEmotionData, mappingEmotion } from '@/utils/hooks/getEmotionData';
 
 function Today() {
   const [diaryText, setDiaryText] = useState('');
@@ -11,6 +11,8 @@ function Today() {
   const [phraseText, setPhraseText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [openEmotionBox, setOpenEmotionBox] = useState(false);
+  const [todayEmotion, setTodayEmotion] = useState(undefined);
 
   console.log('Today 컴포넌트 렌더링됨');
   console.log('현재 상태:', { diaryText, poemText, phraseText, isLoading, error });
@@ -77,6 +79,19 @@ function Today() {
               }}
             />
             {error && <p className="error-message">{error}</p>}
+
+            <div className='emotion-select-box'>오늘의 감정을 선택해주세요!</div>
+
+            <div className='emotion-icons' onClick={() => setOpenEmotionBox((prev) => !prev)}>
+              <div className='emotion'>{getEmotionData(todayEmotion)}</div>
+              <div className={`emotion-box ${openEmotionBox ? 'slide-in' : 'slide-out'}`}>
+                {Object.keys(mappingEmotion).map((emotion) => (
+                  <div onClick={() => setTodayEmotion(emotion)} className='emotion-item'>
+                    {getEmotionData(emotion)}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className='poem-container'>
@@ -88,20 +103,13 @@ function Today() {
                 value={poemText}
                 readOnly
               />
-              <div className='emotion-icons'>
-                <img className='emotion' src={blushImg} alt='기쁨' />
-              </div>
             </div>
 
             <div className='phrase-section'>
               <h2>공감 문구</h2>
-              <textarea
-                className='phrase-output'
-                value={phraseText}
-                readOnly
-              />
+              <textarea className='phrase-output' value={phraseText} readOnly />
             </div>
-          </div>
+          </div>             
 
           <div className='convert-section'>
             <button 
