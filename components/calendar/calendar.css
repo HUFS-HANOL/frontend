@@ -1,0 +1,185 @@
+@font-face {
+  font-family: '조선일보명조';
+  src: url('/src/assets/조선일보명조.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: '조선일보명조', sans-serif;
+  background: linear-gradient(to right, #e6e6fa, #fdebef);
+  color: #4a4a4a;
+  margin: 0;
+  padding: 70px 20px 20px;
+}
+
+.calendar-container {
+  min-width: 600px;
+  margin: 20px auto 20px;
+  text-align: center;
+  padding-top: 150px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #434343;
+  font-size: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.date-cell {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  position: relative;
+}
+
+.date-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.day-emotion {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+.write-btn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.date-cell.inactive {
+  opacity: 0.4;
+}
+
+.stats {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 100px;
+}
+
+.pie-chart {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #fdebef 0% 55%,
+    #ffabab 55% 66%,
+    #e6e6fa 66% 77%,
+    #fff7b8 77% 88%,
+    #ffe082 88% 99%
+  );
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.emotion-summary {
+  flex: 1;
+  font-family: '조선일보명조', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 30px;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0s 0.3s,
+    opacity 0.3s linear;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+  transition:
+    visibility 0s 0s,
+    opacity 0.3s linear;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 280px;
+  font-family: '조선일보명조', cursive;
+  font-size: 18px;
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
