@@ -6,6 +6,7 @@ const AuthContext = createContext(undefined);
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
         // const valid = await instance.post('/api/auth/auth');
         // if (valid.status === 200) {
         //   setToken(storedToken);
+        //   setUserId(valid.data.user.id);
         // } else {
         //   logout();
         // }
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   const isLoggedIn = !!token;
 
   return (
-    <AuthContext.Provider value={{ token, isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ token, isLoggedIn, login, logout, userId }}>
       {children}
     </AuthContext.Provider>
   );
