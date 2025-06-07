@@ -29,27 +29,27 @@ function Today() {
     setError('');
 
     try {
-      const diaryResponse = await saveDiaryDB(diaryText);
+      const diaryResponse = await saveDiaryDB(diaryText, todayEmotion);
       console.log('일기 저장 응답:', diaryResponse);
       const diaryId = diaryResponse.diary_id;
 
       if (diaryResponse.diaryMessage === "일기 저장 완료") {
-        const result = await generatePoem(diaryText, diaryId);
+        const result = await generatePoem(diaryText, diaryId, todayEmotion);
         console.log('API 응답:', result);  
         if (!result || !result.poem) {
           setError('시 생성 실패');
           return;
         }
 
-      setPoemText(result.poem);
-      setPhraseText(result.phrase || '');
+        setPoemText(result.poem);
+        setPhraseText(result.phrase || '');
 
-      const userId = localStorage.getItem("user_id"); 
-      await savePoem(userId, diaryId, result.poem, result.emotion_id); 
-    } else {
-      setError('일기 저장 실패');
-    } 
-  } catch (err) {
+        const userId = localStorage.getItem("user_id"); 
+        await savePoem(userId, diaryId, result.poem, result.emotion_id); 
+      } else {
+        setError('일기 저장 실패');
+      } 
+    } catch (err) {
       console.log('에러 발생:', err);  
       setError('오류가 발생했습니다');
       setPoemText('');
@@ -86,12 +86,24 @@ function Today() {
               <div className='emotion'>{getEmotionData(todayEmotion)}</div>
               <div className={`emotion-box ${openEmotionBox ? 'slide-in' : 'slide-out'}`}>
                 {Object.keys(mappingEmotion).map((emotion) => (
-                  <div onClick={() => setTodayEmotion(emotion)} className='emotion-item'>
+                  <div 
+                    key={emotion} 
+                    onClick={() => setTodayEmotion(emotion)} 
+                    className='emotion-item'
+                  >
                     {getEmotionData(emotion)}
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className='convert-section'>
+            <button 
+              className='convert-btn' 
+              onClick={convertToPoem}
+              disabled={isLoading || !diaryText}
+            />
           </div>
 
           <div className='poem-container'>
@@ -107,17 +119,13 @@ function Today() {
 
             <div className='phrase-section'>
               <h2>공감 문구</h2>
-              <textarea className='phrase-output' value={phraseText} readOnly />
+              <textarea 
+                className='phrase-output' 
+                value={phraseText} 
+                readOnly 
+              />
             </div>
           </div>             
-
-          <div className='convert-section'>
-            <button 
-              className='convert-btn' 
-              onClick={convertToPoem}
-              disabled={isLoading || !diaryText}
-            />
-          </div>
         </div>
       )}
     </div>
