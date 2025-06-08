@@ -12,9 +12,9 @@ body {
 }
 
 .stats-container {
-  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 300px;
 }
 
 .stats-section {
@@ -57,7 +57,7 @@ body {
   color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   padding-bottom: 5px;
 }
 
@@ -81,19 +81,19 @@ body {
 .bar-description {
   max-width: 300px;
   position: relative;
-  padding-top: 0px; 
-  top: -40px; 
+  padding-top: 0px;
+  top: -40px;
   font-size: 16px;
   line-height: 1.6;
   font-family: 'KoPubWorld Dotum Light', sans-serif;
-  display: none; 
+  display: none;
 }
 
 .pie-text-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  gap: 60px; 
+  justify-content: flex-start;
+  gap: 60px;
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
@@ -112,7 +112,7 @@ body {
   );
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
-  margin-left: 150px; 
+  margin-left: 150px;
 }
 
 .label {
@@ -164,15 +164,39 @@ body {
   color: #666;
 }
 
-.bar.month1 { background: #FFE5E5; }  
-.bar.month2 { background: #FFE5F1; }  
-.bar.month3 { background: #FFE5E8; }  
-.bar.month4 { background: #F5E6FF; }  
-.bar.month5 { background: #E6F5FF; } 
-.bar.month6 { background: #E6FFE6; }  
-.bar.month7 { background: #FFF5E6; } 
-.bar.month8 { background: #FFE6E6; }  
-.bar.month9 { background: #E6FFE6; }  
-.bar.month10 { background: #FFE6F5; } 
-.bar.month11 { background: #F5FFE6; } 
-.bar.month12 { background: #E6E6FF; } 
+.bar.month1 {
+  background: #ffe5e5;
+}
+.bar.month2 {
+  background: #ffe5f1;
+}
+.bar.month3 {
+  background: #ffe5e8;
+}
+.bar.month4 {
+  background: #f5e6ff;
+}
+.bar.month5 {
+  background: #e6f5ff;
+}
+.bar.month6 {
+  background: #e6ffe6;
+}
+.bar.month7 {
+  background: #fff5e6;
+}
+.bar.month8 {
+  background: #ffe6e6;
+}
+.bar.month9 {
+  background: #e6ffe6;
+}
+.bar.month10 {
+  background: #ffe6f5;
+}
+.bar.month11 {
+  background: #f5ffe6;
+}
+.bar.month12 {
+  background: #e6e6ff;
+}
