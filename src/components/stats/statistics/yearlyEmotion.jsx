@@ -17,40 +17,6 @@ const YearlyEmotion = () => {
         setYearlyEmotion(emotions);
       }
     });
-
-    /**
-     * @TODO 서버 연결 시 아래 testResponse 데이터 삭제, setYearlyEmotion(testResponse.emotions); 삭제
-     */
-    const testResponse = {
-      emotions: [
-        {
-          name: '기쁨',
-          count: 20,
-        },
-        {
-          name: '슬픔',
-          count: 10,
-        },
-        {
-          name: '화남',
-          count: 7,
-        },
-        {
-          name: '신남',
-          count: 7,
-        },
-        {
-          name: '지침',
-          count: 7,
-        },
-        {
-          name: '보통',
-          count: 7,
-        },
-      ],
-    };
-
-    setYearlyEmotion(testResponse.emotions);
   }, []);
 
   const chartData = yearlyEmotion?.map((item) => ({
