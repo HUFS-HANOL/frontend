@@ -105,7 +105,7 @@ body {
   padding: 2.2rem 1.5rem;
   border-radius: 18px;
   box-shadow: 0 4px 24px 0 rgba(229, 115, 183, 0.09);
-  width: 350px;
+  width: 2000px;
   min-height: 400px;
   margin-right: 0;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -162,6 +162,9 @@ body {
   box-shadow: 0 4px 16px 0 rgba(229, 115, 183, 0.12);
   padding: 5px;
   animation: popIn 0.7s cubic-bezier(0.23, 1.07, 0.32, 1) both;
+  position: static;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 @keyframes popIn {
@@ -334,4 +337,28 @@ body {
     padding: 1.1rem 0.7rem;
     border-radius: 12px;
   }
+}
+
+.like-poem-button {
+  margin-top: 10px;
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #e3b6ff, #ffb7d8);
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.like-poem-button.liked {
+  background: linear-gradient(135deg, #e3b6ff, #ffb7d8);
+  color: white;
+}
+
+.like-poem-button:hover {
+  opacity: 0.9;
 }
