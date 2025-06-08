@@ -20,38 +20,6 @@ const MonthlyEmotion = () => {
         setEmotionStat(emotionCounts);
       }
     });
-
-    /**
-     * @TODO 아래 testResponse 데이터 삭제 (~54 line)
-     */
-    const testResponse = {
-      year: 2025,
-      month: 4,
-      emotions: [
-        {
-          name: '행복',
-          count: 5,
-          percentage: 50,
-        },
-        {
-          name: '피곤함',
-          count: 3,
-          percentage: 30,
-        },
-        {
-          name: '슬픔',
-          count: 2,
-          percentage: 20,
-        },
-      ],
-    };
-
-    const emotionCounts = testResponse.emotions.reduce((acc, emotion) => {
-      acc[emotion.name] = emotion.count;
-      return acc;
-    }, {});
-
-    setEmotionStat(emotionCounts);
   }, []);
 
   return (

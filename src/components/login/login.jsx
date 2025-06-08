@@ -18,25 +18,22 @@ const LoginPage = () => {
   // const from = location.state?.from || '/';
 
   const onSubmit = async (data) => {
-    localStorage.setItem('accessToken', 'test1234');
-
-    navigate('/', { replace: true });
     // console.log('로그인 시도', data);
 
-    // const response = await axios.post(`${API_SERVER_PATH}/api/auth/login`, {
-    //   identifier: data.email,
-    //   password: data.password,
-    // });
+    const response = await axios.post(`${API_SERVER_PATH}/api/auth/login`, {
+      identifier: data.email,
+      password: data.password,
+    });
 
-    // if (response.status === 200) {
-    //   const accessToken = response.data.accessToken;
-    //   localStorage.setItem('accessToken', accessToken);
+    if (response.status === 200) {
+      const accessToken = response.data.accessToken;
+      localStorage.setItem('accessToken', accessToken);
 
-    //   // 로그인 성공시 메인 화면으로 이동
-    //   navigate('/');
-    // } else {
-    //   alert(response.data.authMessage);
-    // }
+      // 로그인 성공시 메인 화면으로 이동
+      navigate('/');
+    } else {
+      alert(response.data.authMessage);
+    }
   };
 
   return (

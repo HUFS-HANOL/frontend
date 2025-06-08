@@ -37,35 +37,9 @@ function Calendar() {
       return await fetchCalendarEmotion(param);
     };
 
-    /**
-     * @TODO 서버 연결 시 주석 해제 및 아래 testdata 삭제
-     */
-    // getCalendarEmotion().then((res) => {
-    //   if (res.status === 200) setMonthEmotion(res.data);
-    // });
-
-    const testData = [
-      {
-        date: '2025-06-01',
-        emotion: '기쁨',
-        liked: true,
-        hasPoem: true,
-      },
-      {
-        date: '2025-06-03',
-        emotion: '슬픔',
-        liked: true,
-        hasPoem: true,
-      },
-      {
-        date: '2025-06-04',
-        emotion: '화남',
-        liked: true,
-        hasPoem: true,
-      },
-    ];
-
-    setMonthEmotion(testData);
+    getCalendarEmotion().then((res) => {
+      if (res.status === 200) setMonthEmotion(res.data);
+    });
 
     const getEmotionStats = async () => {
       const param = {
@@ -76,20 +50,9 @@ function Calendar() {
       return await fetchEmotionStats(param);
     };
 
-    /**
-     * @TODO 서버 연결 시 주석 해제 및 아래 testEmotion 데이터 삭제
-     */
-    // getEmotionStats().then((res) => {
-    //   if (res.status === 200) setEmotionStat(res.data);
-    // });
-
-    const testEmotion = {
-      행복: 5,
-      피곤함: 3,
-      슬픔: 2,
-    };
-
-    setEmotionStat(testEmotion);
+    getEmotionStats().then((res) => {
+      if (res.status === 200) setEmotionStat(res.data);
+    });
   }, [date, userId]);
 
   function goPrevMonth() {
@@ -141,32 +104,11 @@ function Calendar() {
         return await fetchContentDetail(param);
       };
 
-      /**
-       * @TODO 서버 연결 시 주석 해제 및 아래 testContent 데이터 삭제
-       */
       getDetailContent().then((res) => {
         if (res.status === 200) {
           openModal(res.data);
         }
       });
-
-      const testContent = {
-        date: '2025-05-31',
-        diary: {
-          title: '행복한 하루',
-          content: '오늘은 기분이 좋았다.',
-          created_at: '2025-05-31T10:00:00Z',
-        },
-        emotion: {
-          type: '기쁨',
-        },
-        poem: {
-          text: '햇살이 비추는 아침,\n마음이 따뜻해진다.',
-          created_at: '2025-05-31T10:10:00Z',
-        },
-      };
-
-      openModal(testContent);
     };
 
     // 현재 달 날짜 채우기

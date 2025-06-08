@@ -17,66 +17,6 @@ const YearlyHappiess = () => {
         setHappinessStats(monthlyCounts);
       }
     });
-
-    /**
-     * @TODO 아래 testResponse 데이터 삭제 (~79 line)
-     */
-    const testResponse = {
-      year: 2025,
-      emotions: ['기쁨', '행복함', '즐거움'],
-      monthlyCounts: [
-        {
-          month: 1,
-          count: 0,
-        },
-        {
-          month: 2,
-          count: 0,
-        },
-        {
-          month: 3,
-          count: 0,
-        },
-        {
-          month: 4,
-          count: 0,
-        },
-        {
-          month: 5,
-          count: 12,
-        },
-        {
-          month: 6,
-          count: 7,
-        },
-        {
-          month: 7,
-          count: 0,
-        },
-        {
-          month: 8,
-          count: 0,
-        },
-        {
-          month: 9,
-          count: 0,
-        },
-        {
-          month: 10,
-          count: 0,
-        },
-        {
-          month: 11,
-          count: 0,
-        },
-        {
-          month: 12,
-          count: 0,
-        },
-      ],
-    };
-
-    setHappinessStats(testResponse.monthlyCounts);
   }, []);
 
   const chartData = happinessStats?.map((item) => ({
