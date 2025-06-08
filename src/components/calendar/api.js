@@ -14,3 +14,13 @@ export const fetchEmotionStats = async (params) => {
 
   return response;
 };
+
+/**
+ * 특정 날짜 일기/시 상세 조회 API
+ */
+export const fetchContentDetail = async (params) => {
+  console.log(params);
+  const response = await instance.get('/api/calendar/detail', { params });
+
+  return response;
+};

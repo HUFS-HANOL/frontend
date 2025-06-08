@@ -127,19 +127,6 @@ function Today() {
               onClick={convertToPoem}
               disabled={isLoading || !diaryText}
             />
-
-            <div className='emotion-select-box'>오늘의 감정을 선택해주세요!</div>
-
-            <div className='emotion-icons' onClick={() => setOpenEmotionBox((prev) => !prev)}>
-              <div className='emotion'>{getEmotionData(todayEmotion)}</div>
-              <div className={`emotion-box ${openEmotionBox ? 'slide-in' : 'slide-out'}`}>
-                {Object.keys(mappingEmotion).map((emotion) => (
-                  <div onClick={() => setTodayEmotion(emotion)} className='emotion-item'>
-                    {getEmotionData(emotion)}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className='poem-container'>

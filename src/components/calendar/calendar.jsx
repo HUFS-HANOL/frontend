@@ -4,11 +4,12 @@ import './calendar.css';
 
 import penImg from '../../assets/images/pen.png';
 import Navbar from '../common/navbar/navbar';
-import { fetchCalendarEmotion, fetchEmotionStats } from './api';
+import { fetchCalendarEmotion, fetchEmotionStats, fetchContentDetail } from './api';
 import dayjs from 'dayjs';
 import { getEmotionData } from '@/utils/hooks/getEmotionData';
 import { useAuth } from '@/stores/authContext';
 import EmotionPieChart from '../common/pieChart/pieChart';
+import DiaryModal from './modal/diaryModal';
 
 function Calendar() {
   const [date, setDate] = useState(new Date());
@@ -36,6 +37,13 @@ function Calendar() {
       return await fetchCalendarEmotion(param);
     };
 
+    /**
+     * @TODO 서버 연결 시 주석 해제 및 아래 testdata 삭제
+     */
+    // getCalendarEmotion().then((res) => {
+    //   if (res.status === 200) setMonthEmotion(res.data);
+    // });
+
     const testData = [
       {
         date: '2025-06-01',
@@ -57,13 +65,6 @@ function Calendar() {
       },
     ];
 
-    /**
-     * @TODO 서버 연결 시 주석 해제
-     */
-    // getCalendarEmotion().then((res) => {
-    //   if (res.status === 200) setMonthEmotion(res.data);
-    // });
-
     setMonthEmotion(testData);
 
     const getEmotionStats = async () => {
@@ -76,7 +77,7 @@ function Calendar() {
     };
 
     /**
-     * @TODO 서버 연결 시 주석 해제
+     * @TODO 서버 연결 시 주석 해제 및 아래 testEmotion 데이터 삭제
      */
     // getEmotionStats().then((res) => {
     //   if (res.status === 200) setEmotionStat(res.data);
@@ -130,6 +131,44 @@ function Calendar() {
       );
     }
 
+    const handleEmotionClick = (date) => {
+      const getDetailContent = async () => {
+        const param = {
+          userId: userId,
+          date: `${dayjs(date).format('YYYY-MM-DD')}`,
+        };
+
+        return await fetchContentDetail(param);
+      };
+
+      /**
+       * @TODO 서버 연결 시 주석 해제 및 아래 testContent 데이터 삭제
+       */
+      getDetailContent().then((res) => {
+        if (res.status === 200) {
+          openModal(res.data);
+        }
+      });
+
+      const testContent = {
+        date: '2025-05-31',
+        diary: {
+          title: '오늘의 일기 제목',
+          content: '오늘은 기분이 좋았다.',
+          created_at: '2025-05-31T10:00:00Z',
+        },
+        emotion: {
+          type: '기쁨',
+        },
+        poem: {
+          text: '햇살이 비추는 아침,\n마음이 따뜻해진다.',
+          created_at: '2025-05-31T10:10:00Z',
+        },
+      };
+
+      openModal(testContent);
+    };
+
     // 현재 달 날짜 채우기
     for (let i = 1; i <= lastDate; i++) {
       const currentDate = dayjs(new Date(year, month, i)).format('YYYY-MM-DD');
@@ -140,7 +179,7 @@ function Calendar() {
           <span className='date-number'>{i}</span>
 
           {dayEmotion?.emotion && (
-            <span className='day-emotion' onClick={() => openModal('poem', '바보')}>
+            <span className='day-emotion' onClick={() => handleEmotionClick(currentDate)}>
               {getEmotionData(dayEmotion.emotion)}
             </span>
           )}
@@ -157,11 +196,10 @@ function Calendar() {
     return days;
   }
 
-  function openModal(type, text) {
+  function openModal(content) {
     setModal({
       isOpen: true,
-      type: type,
-      text: text,
+      content: content,
     });
   }
 
@@ -201,17 +239,7 @@ function Calendar() {
           </div>
         </div>
       </div>
-      {modal.isOpen && (
-        <div className='modal show' onClick={closeModal}>
-          <div className='modal-content' onClick={(e) => e.stopPropagation()}>
-            <span className='close-btn' onClick={closeModal}>
-              &times;
-            </span>
-            <h3>{modal.type === 'poem' ? '그날의 시' : '그날의 일기'}</h3>
-            <p>{modal.text}</p>
-          </div>
-        </div>
-      )}
+      {modal.isOpen && <DiaryModal {...modal.content} onClose={closeModal} />}
     </div>
   );
 }
