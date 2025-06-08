@@ -17,7 +17,7 @@ const DiaryModal = ({ date, diary, poem, onClose }) => {
           </div>
           <div className='card right-card'>
             <h4>✍️ 그날의 시</h4>
-            <pre className='content-text'>{poem.text}</pre>
+            <pre className='content-text'>{poem.poem_text}</pre>
           </div>
         </section>
       </div>

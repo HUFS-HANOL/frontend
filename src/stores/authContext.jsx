@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
   };
 
-  const isLoggedIn = !!token;
+  const isLoggedIn = localStorage.getItem('accessToken') || !!token;
 
   return (
     <AuthContext.Provider value={{ token, isLoggedIn, login, logout, userId }}>
