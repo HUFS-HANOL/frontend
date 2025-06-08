@@ -15,13 +15,13 @@ export const AuthProvider = ({ children }) => {
 
       if (storedToken) {
         setToken(storedToken);
-        // const valid = await instance.post('/api/auth/auth');
-        // if (valid.status === 200) {
-        //   setToken(storedToken);
-        //   setUserId(valid.data.user.id);
-        // } else {
-        //   logout();
-        // }
+        const valid = await instance.post('/api/auth/auth');
+        if (valid.status === 200) {
+          setToken(storedToken);
+          setUserId(valid.data.user.id);
+        } else {
+          logout();
+        }
       }
     };
 
