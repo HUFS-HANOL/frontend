@@ -25,7 +25,6 @@ const COLORS = [
 ];
 
 const EmotionBarChart = ({ chartData }) => {
-  console.log(chartData);
   if (!chartData) {
     return <b>통계정보가 없습니다 ಥ_ಥ</b>;
   }
