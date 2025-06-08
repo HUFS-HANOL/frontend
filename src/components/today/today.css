@@ -338,3 +338,27 @@ body {
     border-radius: 12px;
   }
 }
+
+.like-poem-button {
+  margin-top: 10px;
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #e3b6ff, #ffb7d8);
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.like-poem-button.liked {
+  background: linear-gradient(135deg, #e3b6ff, #ffb7d8); 
+  color: white;
+}
+
+.like-poem-button:hover {
+  opacity: 0.9;
+}
