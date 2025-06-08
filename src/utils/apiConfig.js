@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_SERVER_PATH } from './config';
 
-const ACCESS_TOKEN = localStorage.getItem('token');
+const ACCESS_TOKEN = localStorage.getItem('accessToken');
 
 export const instance = axios.create({
   baseURL: API_SERVER_PATH,
