@@ -4,6 +4,7 @@ import { saveDiaryDB, generatePoem, savePoem, likePoem } from '../../services/ap
 import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
 import { getEmotionData, mappingEmotion } from '@/utils/hooks/getEmotionData';
+import { useAuth } from '@/stores/authContext';
 
 function Today() {
   const [diaryText, setDiaryText] = useState('');
@@ -19,6 +20,8 @@ function Today() {
   console.log('Today 컴포넌트 렌더링됨');
   console.log('현재 상태:', { diaryText, poemText, phraseText, isLoading, error });
 
+  const { userId } = useAuth();
+
   async function convertToPoem() {
     console.log('시 변환 시작:', diaryText);
 
@@ -31,7 +34,7 @@ function Today() {
     setError('');
     setLiked(false);
     try {
-      const diaryResponse = await saveDiaryDB(diaryText, todayEmotion);
+      const diaryResponse = await saveDiaryDB(diaryText, todayEmotion, userId);
       console.log('일기 저장 응답:', diaryResponse);
       const diaryId = diaryResponse.diary_id;
 

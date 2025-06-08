@@ -12,11 +12,11 @@ const DiaryModal = ({ date, diary, poem, onClose }) => {
         </div>
         <section className='modal-split'>
           <div className='card left-card'>
-            <h4>📓 {diary.title}</h4>
+            <h4>📓 그날의 일기</h4>
             <pre className='content-text'>{diary.content}</pre>
           </div>
           <div className='card right-card'>
-            <h4>✍️ 오늘의 시</h4>
+            <h4>✍️ 그날의 시</h4>
             <pre className='content-text'>{poem.text}</pre>
           </div>
         </section>

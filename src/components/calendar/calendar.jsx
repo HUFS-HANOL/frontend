@@ -141,15 +141,16 @@ function Calendar() {
   function openModal(content) {
     setModal({
       isOpen: true,
-      content: content,
+      content: content.entries[0],
+      date: content.date,
     });
   }
 
   function closeModal() {
     setModal({
       isOpen: false,
-      type: '',
-      text: '',
+      content: '',
+      date: '',
     });
   }
 
@@ -181,7 +182,7 @@ function Calendar() {
           </div>
         </div>
       </div>
-      {modal.isOpen && <DiaryModal {...modal.content} onClose={closeModal} />}
+      {modal.isOpen && <DiaryModal {...modal.content} date={modal.date} onClose={closeModal} />}
     </div>
   );
 }
