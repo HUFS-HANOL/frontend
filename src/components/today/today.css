@@ -34,7 +34,7 @@ body {
   gap: 2.2rem;
   margin-left: 0;
   min-height: 400px;
-  animation: fadeInLeft 1.2s cubic-bezier(.23,1.07,.32,1) both;
+  animation: fadeInLeft 1.2s cubic-bezier(0.23, 1.07, 0.32, 1) both;
 }
 
 @keyframes fadeInLeft {
@@ -162,9 +162,9 @@ body {
   box-shadow: 0 4px 16px 0 rgba(229, 115, 183, 0.12);
   padding: 5px;
   animation: popIn 0.7s cubic-bezier(0.23, 1.07, 0.32, 1) both;
-  position: static; 
-  flex-shrink: 0; 
-  align-self: center; 
+  position: static;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 @keyframes popIn {
@@ -264,7 +264,7 @@ body {
 
   position: absolute;
   top: 92%;
-  left: 23%;
+  left: 33%;
   /* left: 46px; */
   padding: 8px;
 
@@ -355,7 +355,7 @@ body {
 }
 
 .like-poem-button.liked {
-  background: linear-gradient(135deg, #e3b6ff, #ffb7d8); 
+  background: linear-gradient(135deg, #e3b6ff, #ffb7d8);
   color: white;
 }
 
