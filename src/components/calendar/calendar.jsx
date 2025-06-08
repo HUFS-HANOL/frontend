@@ -153,7 +153,7 @@ function Calendar() {
       const testContent = {
         date: '2025-05-31',
         diary: {
-          title: '오늘의 일기 제목',
+          title: '행복한 하루',
           content: '오늘은 기분이 좋았다.',
           created_at: '2025-05-31T10:00:00Z',
         },

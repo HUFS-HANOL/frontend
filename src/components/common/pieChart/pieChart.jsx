@@ -43,6 +43,8 @@ const EmotionPieChart = ({ data }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        fontFamily: 'KoPubWorld Dotum Light',
+        fontSize: '16px',
       }}
     >
       <PieChart width={300} height={300}>
