@@ -62,18 +62,29 @@ export const generatePoem = async (content, diary_id, emotion_type) => {
 
     return response.data;
   } catch (error) {
-    console.error('시 생성 중 오류 발생:', error);
-    throw error;
+    if (error.response && error.response.data && error.response.data.message) {
+      console.error('시 생성 오류 메시지:', error.response.data.message);
+      throw new Error(error.response.data.message);
+    } else {
+      console.error('시 생성 중 오류 발생:', error);
+      throw error;
+    }
   }
 };
 
-export const savePoem = async (user_id, diary_id, poem, emotion_id) => {
+export const savePoem = async (user_id, diary_id, poem, emotion_id, title) => {
   try {
-    console.log('savePoem 호출, user_id:', user_id, 'diary_id:', diary_id, 'poem:', poem);
+    console.log(
+      'savePoem 호출, user_id:', user_id,
+      'diary_id:', diary_id,
+      'poem:', poem,
+      'title:', title
+    );
     const response = await axios.post(`${BASE_URL}/poems`, {
       diary_id,
       poem: poem,
       emotion_id: emotion_id,
+      title: title,
     });
     return response.data;
   } catch (error) {
