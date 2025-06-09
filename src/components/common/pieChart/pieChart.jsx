@@ -3,9 +3,24 @@ import { PieChart, Pie, Cell } from 'recharts';
 const COLORS = ['#FFEBEE', '#F8BBD0', '#E1BEE7', '#C5CAE9', '#FFF9C4'];
 
 const EmotionPieChart = ({ data }) => {
-  if (!data) {
-    return <b>통계정보가 없습니다 ಥ_ಥ</b>;
+  if (!data || Object.keys(data).length === 0) {
+    return (
+      <div
+        style={{
+          minHeight: '100px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '16px',
+        }}
+      >
+        <b style={{ color: '#6d5eac', opacity: '1' }}>아직 등록된 일기가 없어요!</b>
+        <p style={{ fontSize: '12px' }}>일기가 생기면 여기에서 통계로 확인할 수 있어요!</p>
+      </div>
+    );
   }
+
   const chartData = Object.entries(data).map(([name, value]) => ({ name, value }));
   const total = chartData.reduce((sum, d) => sum + d.value, 0);
 

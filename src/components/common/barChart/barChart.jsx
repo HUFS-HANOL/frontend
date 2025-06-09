@@ -25,8 +25,22 @@ const COLORS = [
 ];
 
 const EmotionBarChart = ({ chartData }) => {
-  if (!chartData) {
-    return <b>통계정보가 없습니다 ಥ_ಥ</b>;
+  if (!chartData || !chartData?.find((data) => data.value !== 0)) {
+    return (
+      <div
+        style={{
+          minHeight: '100px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '16px',
+        }}
+      >
+        <b style={{ color: '#6d5eac', opacity: '1' }}>아직 등록된 일기가 없어요!</b>
+        <p style={{ fontSize: '12px' }}>일기가 생기면 여기에서 통계로 확인할 수 있어요!</p>
+      </div>
+    );
   }
   return (
     <ResponsiveContainer width={600} height={200}>

@@ -28,6 +28,10 @@ function Calendar() {
   const { userId } = useAuth();
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
     const getCalendarEmotion = async () => {
       const param = {
         userId: userId,
@@ -120,14 +124,12 @@ function Calendar() {
         <div key={`day-${i}`} className='date-cell'>
           <span className='date-number'>{i}</span>
 
-          {dayEmotion?.emotion && (
+          {dayEmotion?.emotion ? (
             <span className='day-emotion' onClick={() => handleEmotionClick(currentDate)}>
               {getEmotionData(dayEmotion.emotion)}
             </span>
-          )}
-
-          {!dayEmotion?.hasPoem && (
-            <Link to='/today'>
+          ) : (
+            <Link to={`/today?date=${currentDate}`}>
               <img src={penImg} className='write-btn' alt='write' />
             </Link>
           )}
@@ -171,15 +173,17 @@ function Calendar() {
           <div className='emotion-summary'>
             <p>{date.getMonth() + 1}월의 감정 통계</p>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <EmotionPieChart data={emotionStat} />
-          </div>
+          {emotionStat && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
+              <EmotionPieChart data={emotionStat} />
+            </div>
+          )}
         </div>
       </div>
       {modal.isOpen && <DiaryModal {...modal.content} date={modal.date} onClose={closeModal} />}

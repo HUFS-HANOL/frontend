@@ -1,10 +1,11 @@
 // API 요청을 처리하는 함수들을 모아두었습니다!
 
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const BASE_URL = 'http://localhost:3000/api/today';
 
-export const saveDiaryDB = async (diary, emotionType, userId) => {
+export const saveDiaryDB = async (diary, emotionType, userId, date) => {
   const token = localStorage.getItem('accessToken');
 
   console.log('saveDiaryDB 호출, accessToken:', token);
@@ -13,6 +14,7 @@ export const saveDiaryDB = async (diary, emotionType, userId) => {
     user_id: userId,
     content: diary,
     emotion_type: emotionType,
+    date: date || dayjs().format('YYYY-MM-DD'),
   };
   console.log('백엔드로 보낼 데이터:', dataToSend);
 
@@ -23,6 +25,7 @@ export const saveDiaryDB = async (diary, emotionType, userId) => {
         content: diary,
         user_id: userId,
         emotion_type: emotionType,
+        date: date || dayjs().format('YYYY-MM-DD'),
       },
       {
         headers: {
