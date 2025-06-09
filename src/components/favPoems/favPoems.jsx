@@ -53,6 +53,7 @@ function FavPoems() {
         const res = await axios.get('http://localhost:3000/api/likedPoems/view', {
           params: { user_id: userId },
         });
+        console.log('좋아요한 시:', res.data.poems);
         setFavPoems(res.data.poems);
       } catch (err) {
         console.error('좋아요한 시 불러오기 실패:', err);
@@ -83,7 +84,7 @@ function FavPoems() {
             favPoems.map((poem, index) => (
               <li key={index} className='poem-item'>
                 <pre>{poem.poem_text}</pre>
-                <small>{new Date(poem.created_at).toLocaleDateString()}</small>
+                <small>{new Date(poem.date).toLocaleDateString()}</small>
               </li>
             ))
           ) : (
