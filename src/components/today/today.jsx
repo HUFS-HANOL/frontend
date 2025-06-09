@@ -5,8 +5,10 @@ import Navbar from '../common/navbar/navbar';
 import Loading from '../common/loading/loading';
 import { getEmotionData, mappingEmotion } from '@/utils/hooks/getEmotionData';
 import { useAuth } from '@/stores/authContext';
+import { useSearchParams } from 'react-router-dom';
 
 function Today() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [diaryText, setDiaryText] = useState('');
   const [poemText, setPoemText] = useState('');
   const [phraseText, setPhraseText] = useState('');
@@ -34,7 +36,12 @@ function Today() {
     setError('');
     setLiked(false);
     try {
-      const diaryResponse = await saveDiaryDB(diaryText, todayEmotion, userId);
+      const diaryResponse = await saveDiaryDB(
+        diaryText,
+        todayEmotion,
+        userId,
+        searchParams.get('date'),
+      );
       console.log('일기 저장 응답:', diaryResponse);
       const diaryId = diaryResponse.diary_id;
 
